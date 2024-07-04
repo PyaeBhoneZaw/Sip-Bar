@@ -8,18 +8,16 @@ export default async function HomePage() {
   const data = await fetchData();
 
   interface MenuProps {
-    key: String;
-    strDrink: String;
-    strDrinkThmb: String;
-    idDrink: String;
+    key: string;
+    strDrink: string;
+    strDrinkThumb: string;
+    idDrink: string;
   }
 
-
   return (
-    <div className="container">
-      <h1 className="text-center text-blue-600">CockTail List</h1>
-
-    </div>
+    <main className="font-poppins mx-10">
+      <div className="text-center text-5xl mt-5 mb-5 font-semibold leading-normal">Drink Lists</div>
+      <MenuContainer menuItems={data.drinks} />
+    </main>
   )
 }
-
