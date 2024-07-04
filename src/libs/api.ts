@@ -1,5 +1,5 @@
 // lib/api.ts
-export const fetchData = async (endpoint: string) => {
+export const fetchData = async () => {
     const response = await fetch(
         "https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail"
     );
