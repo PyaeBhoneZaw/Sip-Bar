@@ -1,23 +1,32 @@
-import Image from "next/image";
-import Link from "next/link";
+'use client'
+
+import { useEffect, useState } from "react";
 import MenuContainer from "./components/MenuContainer/MenuContainer";
 import { fetchData } from "@/libs/api";
+import useSWR from "swr";
 
-export default async function HomePage() {
+const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
-  const data = await fetchData();
+export default function HomePage() {
 
-  interface MenuProps {
-    key: string;
-    strDrink: string;
-    strDrinkThumb: string;
-    idDrink: string;
-  }
+  // const [data, setData] = useState([]);
+
+  const { data, error, isLoading } = useSWR('http://127.0.0.1:8800/drinks.json', fetcher)
+
+
+  if (error) return <div>Failed to load</div>
+  if (!data) return <div>Loading...</div>
+  // useEffect(() => {
+  //   (async () => {
+  //     setData(await fetchData())
+  //   })()
+
+  // }, [])
 
   return (
     <main className="font-poppins mx-10">
       <div className="text-center text-5xl mt-5 mb-5 font-semibold leading-normal">Drink Lists</div>
-      <MenuContainer menuItems={data.drinks} />
+      <MenuContainer menuItems={data} />
     </main>
   )
 }
