@@ -14,7 +14,7 @@ export default function HomePage() {
   const { data, error, isLoading } = useSWR('http://127.0.0.1:8800/drinks.json', fetcher)
 
 
-  if (error) return <div>Failed to load</div>
+  if (error) return <div className="text-2xl text-danger text-red-500 mt-5 text-center">Failed to load</div>
   if (!data) return <div>Loading...</div>
   // useEffect(() => {
   //   (async () => {
